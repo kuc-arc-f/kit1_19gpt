@@ -109,23 +109,14 @@ console.log("id=", id);
       await client.query('BEGIN');
       // update task
       const result = await client.query(
-        `UPDATE todos SET user_id = $1, title = $2, content = $3, priority = $4, category_id = $5,
-         completed = $6, 
-         tag_1 = $7, tag_2 = $8, tag_3 = $9, tag_4 = $10, tag_5 = $11,
-         complete_date = $12, updated_at = current_timestamp WHERE id = $13 RETURNING *`,
+        `UPDATE todos SET user_id = $1, title = $2, content = $3,
+         completed = $4, 
+         updated_at = current_timestamp WHERE id = $5 RETURNING *`,
         [
           task.user_id,
           task.title,
           task.content,
-          task.priority,
-          task.category_id,
           task.completed,
-          task.tag_1,
-          task.tag_2,
-          task.tag_3,
-          task.tag_4,
-          task.tag_5,
-          task.complete_date,
           id,
         ],
       );
