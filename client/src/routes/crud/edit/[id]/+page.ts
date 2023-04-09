@@ -1,7 +1,7 @@
 
 import { error } from '@sveltejs/kit';
 //import LibSqlite from '$lib/LibSqlite';
-import Chat from '../../Chat';
+import CrudShow from '../../CrudShow';
 //type
 type IPostItem = {
   id: number,
@@ -14,11 +14,12 @@ type IPostItem = {
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
 console.log("id=", params.id);
-  const item = await Chat.get(Number(params.id))
+  const item = await CrudShow.get(Number(params.id))
   console.log(item);
   return {
       id: item.id,
-      name: item.name,
+      name: "",
+      item: item,
     };  
 //    throw error(404, 'Not found');
 }
